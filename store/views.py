@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .models import *
 
-# Create your views here.
+def index(request):
+    products=Product.objects.all()
+    category=Categories.objects.all()
+    d={'product':products,'category':category}
+    return render(request,"index.html",d)
+
