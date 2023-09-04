@@ -20,6 +20,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{%url 'stores:index1' %}">Home</a>
           </li>
@@ -31,23 +32,27 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact Us</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Product Category
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Men-Shirt</a></li>
-              <li><a class="dropdown-item" href="#">Men-T-Shirt</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Women-Saree</a></li>
-            </ul>
+
+          {% if user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link " href="{%url 'stores:showcart' %}">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Register</a> 
+            <a class="nav-link " href="{%url 'stores:logout' %}">Logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Login</a>
+            <h3> {{user}}</h3>
           </li>
+          {%else%}
+          <li class="nav-item">
+            <a class="nav-link " href="{%url 'stores:register1' %}">Register</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{%url 'stores:logins' %}">Login</a>
+          </li>
+         
+
+          {%endif%}
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

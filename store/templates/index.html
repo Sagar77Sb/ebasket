@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    {%load static%}
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,21 +24,22 @@
             <div class="col-lg-2 mx-auto">
                 <div class="list-group">
                     {%for j in category%}
-                    <a href="#" class="list-group-item list-group-item-action">{{j.name}}</a>
+                    <a href="/?categories={{j.id}}" class="list-group-item list-group-item-action">{{j.name}}</a>
                      {%endfor%}
                 </div>
             </div>
             <div id="products" class="col-lg-10 mx-auto">
                 <div class="row mx-auto">
-                    {% for i in product %}
+                    {% for product in product %}
                     <div class="card mx-auto mb-3" style="width: 18rem;">
-                        <img src="{{ i.image.url }}" class="card-img-top">
+                        <img src="{{ product.image.url }}" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title">{{i.title}}</h5>
-                            <p class="card-text">{{i.category}}</p>
-                            <p class="card-text"><b>Rs.{{i.price}}/-</b></p>
-                            <p class="card-text">{{i.description}}</p>
-                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                            <h5 class="card-title">{{product.title}}</h5>
+                            <p class="card-text">{{product.category}}</p>
+                            <p class="card-text"><b>Rs.{{product.price}}/-</b></p>
+                            <p class="card-text">{{product.description}}</p>
+                            <a href="{%url 'stores:addcart' product.id%}"><button>Add Cart</button></a>
+                         
                         </div>
                     </div>
 
